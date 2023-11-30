@@ -1,0 +1,42 @@
+<section class="categories_list_container flex items-center justify-center mt-24">
+  <div class=" flex flex-col gap-4 p-4">
+    <%if @categories.empty?%>
+        <h2 class="text-4xl font-extrabold leading-none tracking-tight text-gray-900 md:text-5xl lg:text-6xl dark:text-white">Oops!! There are no categories</h2>
+        <div class="flex">
+          <%= link_to 'Add a Category', new_categories_path, class: " text-gray-900 bg-gradient-to-r from-lime-200 via-lime-400 to-lime-500 hover:bg-gradient-to-br focus:ring-4 focus:outline-none focus:ring-lime-300 dark:focus:ring-lime-800 font-medium rounded-lg text-sm px-5 py-2.5 text-center me-2 mb-2" %>
+        </div>
+    <%else%> 
+      <div class="flex flex-col gap-6">
+        <article class="top">
+          
+          <h2 class="mb-4 text-4xl font-extrabold leading-none tracking-tight text-gray-900 md:text-4xl lg:text-4xl dark:text-white">Hello <mark class="px-2 text-white bg-blue-600 rounded dark:bg-blue-500"><%= current_user.name%></mark> , Welcome to the App!</h2>
+        </article>
+        <div class="category_page flex flex-col gap-8">
+          <% @categories.each do |category| %>
+            <%= link_to category_purchases_path(category), class:"border border-slate-50 shadow-[rgba(50,50,93,0.25)_0px_6px_12px_-2px,_rgba(0,0,0,0.3)_0px_3px_7px_-3px]" do %>
+              <article class="p-4 grid grid-cols-3 gap-4">
+                <div class="img-top col-span-2 flex gap-2">
+                  <figure class="relative max-w-sm transition-all duration-300 cursor-pointer filter grayscale hover:grayscale-0">
+                    <img src="<%= category.icon %>" class="rounded-lg h-24 w-24">
+                  </figure>
+                
+                  <div class="left">
+                    <p class="text-xl font-semibold"><%= category.name %></p>
+                    <p><%= category.updated_at.strftime("%e %b %Y") %></p>
+                  </div>
+                </div>
+
+                <div class="budget">
+                  <p><strong>Budget: </strong><%= category.purchases.sum(:amount) %>$</p>
+                </div>
+              </article>
+            <%end%>
+          <%end%>
+        </div>
+        <div class="grid mt-6 mb-6 pt-6"">
+          <%= link_to 'Add a Category', new_categories_path, class: "text-gray-900 bg-gradient-to-r from-lime-200 via-lime-400 to-lime-500 hover:bg-gradient-to-br focus:ring-4 focus:outline-none focus:ring-lime-300 dark:focus:ring-lime-800 font-medium rounded-lg text-sm px-5 py-2.5 text-center me-2 mb-2" %>
+        </div>
+      </div>
+    <%end%>
+  </div>
+</section>

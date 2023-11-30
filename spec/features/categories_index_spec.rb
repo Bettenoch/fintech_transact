@@ -2,7 +2,7 @@ require 'rails_helper'
 
 RSpec.describe 'Categories management', type: :feature do
   let(:user) { create(:user) }
-  let!(:category) { create(:category, user: user) }
+  let!(:category) { create(:category, user:) }
 
   before do
     login_as(user, scope: :user)
@@ -18,7 +18,7 @@ RSpec.describe 'Categories management', type: :feature do
   end
 
   it 'displays categories when they exist' do
-    expect(page).to have_content("Welcome to the App!")
+    expect(page).to have_content('Welcome to the App!')
     expect(page).to have_css('.categories_list_container')
 
     within '.category_page' do
@@ -30,7 +30,5 @@ RSpec.describe 'Categories management', type: :feature do
   it 'allows adding a new category' do
     click_link 'Add a Category'
     expect(page).to have_current_path(new_categories_path)
-   
   end
-
 end

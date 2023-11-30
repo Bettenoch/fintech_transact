@@ -5,7 +5,7 @@ class CategoriesController < ApplicationController
     @categories = current_user.categories
     # @total_budget = total_purchase_amount
   end
-     
+
   def new
     @category = Category.new
   end
@@ -28,7 +28,7 @@ class CategoriesController < ApplicationController
   # def total_purchase_amount(categories)
   #   categories.each do |cat|
   #   cat.purchases.sum(:amount)
-     
+
   # end
   private
 
@@ -36,4 +36,3 @@ class CategoriesController < ApplicationController
     params.require(:category).permit(:name, :icon)
   end
 end
-  

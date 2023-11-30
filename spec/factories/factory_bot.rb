@@ -4,7 +4,7 @@ FactoryBot.define do
   factory :user do
     name { Faker::Name.name }
     email { Faker::Internet.email }
-    password { 'password123' } 
+    password { 'password123' }
     profile { Faker::Lorem.sentence }
 
     factory :user_with_categories_and_purchases do
@@ -14,9 +14,9 @@ FactoryBot.define do
       end
 
       after(:create) do |user, evaluator|
-        create_list(:category, evaluator.categories_count, user: user).each do |category|
+        create_list(:category, evaluator.categories_count, user:).each do |category|
           create_list(:purchase, evaluator.purchases_count, author: user).each do |purchase|
-            create(:category_purchase, category: category, purchase: purchase)
+            create(:category_purchase, category:, purchase:)
           end
         end
       end
@@ -35,7 +35,7 @@ FactoryBot.define do
 
       after(:create) do |category, evaluator|
         create_list(:purchase, evaluator.purchases_count, author: category.user).each do |purchase|
-          create(:category_purchase, category: category, purchase: purchase)
+          create(:category_purchase, category:, purchase:)
         end
       end
     end
@@ -46,7 +46,7 @@ FactoryBot.define do
     amount { Faker::Number.decimal(l_digits: 2) }
     association :author, factory: :user
   end
-  
+
   factory :category_purchase do
     association :category
     association :purchase

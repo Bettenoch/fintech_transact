@@ -2,12 +2,15 @@ require 'rails_helper'
 
 RSpec.describe 'Purchases Index Page', type: :feature do
   context 'when the purchases list is not empty for a specific category' do
+    let(:user) { FactoryBot.create(:user, :with_categories_and_purchases) }
+    let(:category) { user.categories.first }
+
     before do
-      @user_with_categories_and_purchases = FactoryBot.create(:user_with_categories_and_purchases)
-      @category = @user_with_categories_and_purchases.categories.first
-      login_as(@user_with_categories_and_purchases, scope: :user)
-      visit category_purchases_path(@category)
+      login_as(user, scope: :user)
+      visit category_purchases_path(category)
       # Logic to create a non-empty list of purchases for the category
+      # You may need to adjust this logic based on how purchases are created
+      # Perhaps something like `category.purchases.create(name: 'Sample Purchase', amount: 10.0)` within a loop
     end
 
     it 'displays the list of transactions' do
@@ -15,7 +18,7 @@ RSpec.describe 'Purchases Index Page', type: :feature do
       expect(page).to have_css('.purchase-box')
       expect(page).to have_content('Find your Transactions here')
 
-      @category.purchases.each do |purchase|
+      category.purchases.each do |purchase|
         expect(page).to have_content(purchase.updated_at.strftime('%e %b %Y'))
       end
     end

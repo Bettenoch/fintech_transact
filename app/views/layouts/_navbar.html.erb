@@ -5,12 +5,14 @@
         <span class="self-center text-2xl font-semibold whitespace-nowrap dark:text-white">Fintech  <mark class="text-3xl font-bold bg-transparent text-rose-700 rounded dark:bg-blue-500">Transact</mark></span>
     </div>
     <div class="flex md:order-2 space-x-3 md:space-x-0 rtl:space-x-reverse">
+      <% if current_user.present? %>
         <figure class="pr-2">
           <img src="<%= current_user.profile %>" class="rounded-full h-10 w-10">
           <figcaption class="absolute px-4 text-6xl font-extrabold text-lime-400 bottom-6">
             <p>.</p>
           </figcaption>
         </figure>
+      <% end %>
         <button type="button" class="text-white bg-blue-700 hover:bg-blue-800 focus:ring-4 focus:outline-none focus:ring-blue-300 font-medium rounded-lg text-sm px-4 py-2 text-center dark:bg-blue-600 dark:hover:bg-blue-700 dark:focus:ring-blue-800">
             <%= link_to "Log Out", destroy_user_session_path, method: :delete, data: { turbo_method: :delete } %>
         </button>

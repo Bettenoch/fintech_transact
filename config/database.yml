@@ -83,6 +83,7 @@ test:
 #
 production:
   <<: *default
-  database: fintech_transact_production
-  username: steel
-  password: <%= ENV['FINTECH_TRANSACT_DATABASE_PASSWORD'] %>
+  url: <%= ENV['DATABASE_URL'] %>
+  # database: fintech_transact_production
+  # username: steel
+  # password: <%= ENV['FINTECH_TRANSACT_DATABASE_PASSWORD'] %>

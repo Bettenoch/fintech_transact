@@ -2,6 +2,7 @@ databases:
   - name: fintechTransact
     databaseName: fintech_transact
     user: steel
+    plan: free
 
 services:
   - type: web

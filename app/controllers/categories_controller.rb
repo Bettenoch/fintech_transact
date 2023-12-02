@@ -3,7 +3,6 @@ class CategoriesController < ApplicationController
 
   def index
     @categories = current_user.categories
-    # @total_budget = total_purchase_amount
   end
 
   def new
@@ -25,11 +24,6 @@ class CategoriesController < ApplicationController
     redirect_to categories_path, notice: 'Category deleted successfully.'
   end
 
-  # def total_purchase_amount(categories)
-  #   categories.each do |cat|
-  #   cat.purchases.sum(:amount)
-
-  # end
   private
 
   def category_params

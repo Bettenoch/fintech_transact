@@ -28,11 +28,11 @@
   - [📝 License ](#-license-)
 
 
-# 📖 BuddyBudget <a name="about-project"></a>
+# 📖 FintechTransact <a name="about-project"></a>
 
 **FintechTransact** is a a mobile web application where you can manage your budget: you have a list of transactions associated with a category, so that you can see how much money you spent and on what.
 
-
+[Click here to watch a video description of the project.](https://www.loom.com/share/52adad0a4ff14c50bdb6ca0981c199a0?sid=c352c9e3-be20-44da-88a7-9bae8b2ad902)
 ## 🛠 Built With <a name="built-with"></a>
 
 ### Tech Stack <a name="tech-stack"></a>
@@ -60,8 +60,7 @@
 <p align="right">(<a href="#readme-top">back to top</a>)</p>
 
 ### Live Link <a name="key-features"></a>
-
-COMING SOON
+- [Click here to view project](https://fintechtransact.onrender.com/)
 
 <p align="right">(<a href="#readme-top">back to top</a>)</p>
 

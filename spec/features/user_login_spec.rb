@@ -21,7 +21,6 @@ RSpec.feature 'User Login', type: :feature do
     fill_in 'Password', with: 'invalid_password'
     click_button 'Log in'
 
-    # expect(page).to have_cnontent('Invalid Email or password')
     expect(current_path).to eq(new_user_session_path)
   end
 end

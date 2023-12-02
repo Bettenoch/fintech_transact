@@ -1,0 +1,43 @@
+<section class="new-category grid mx-auto flex-1 py-4 mt-24 w-[80%]">
+  <%= link_to 'Back to Transactions <', category_purchases_path %>
+  <div class="page-content justify-self-center flex flex-col items-centre gap-2">
+    
+    <h2 class="title text-xl md:text-3xl font-extrabold leading-none tracking-tight text-gray-900 md:text-5xl lg:text-6xl dark:text-white">Make a Transaction</h2>
+        <!-- Display Errors -->
+    <% if @purchase.errors.any? %>
+      <div id="error_explanation">
+        <h2><%= pluralize(@purchase.errors.count, "error") %> prohibited this purchase from being saved:</h2>
+        <ul>
+          <% @purchase.errors.full_messages.each do |msg| %>
+            <li><%= msg %></li>
+          <% end %>
+        </ul>
+      </div>
+    <% end %>
+    <ul class =" flex gap-2 w-full max-w-xs">
+        <%= form_with(model: @purchase, url: category_purchases_path, html: { class: 'post-form flex flex-1 flex-col gap-2 bg-[#f8fafc] shadow-md rounded px-8 pt-6 pb-8 mb-4' }) do |f| %>
+    
+          <li class="f-label">
+            <%= f.label :purchase_name, class: "form-label block text-gray-700 text-sm font-bold mb-2"%><br>
+            <%= f.text_field :name, class: "form-control outline-none shadow appearance-none border rounded w-full py-2 px-4 text-gray-700 leading-tight focus:outline-none focus:bg-white focus:border-emerald-900",  required: true %>
+          </li>
+
+          <li class="f-label">
+            <%= f.label :amount, class: "form-label block text-gray-700 text-sm font-bold mb-2" %><br>
+            <%= f.number_field :amount, class: "form-control outline-none shadow appearance-none border rounded w-full py-2 px-4 text-gray-700 leading-tight focus:outline-none focus:bg-white focus:border-emerald-900", required: true %>
+          </li>
+
+          <li class="field">
+            <%= f.label :category_ids, 'Select Categories', class:"block text-gray-700 text-sm font-bold mb-2" %><br>
+
+            <%= f.collection_check_boxes :category_ids, Category.where(user: current_user), :id, :name, class: "in outline-none shadow appearance-none border rounded w-full py-2 px-4 text-gray-700 leading-tight focus:outline-none focus:bg-white focus:border-emerald-900", required: true %>
+           
+          </li>
+          <li class="btn-container">
+            <p><%= f.submit "Add a Transaction", class: "submit-btn border-2 border-white md:border-none w-full justify-self-center shadow bg-[#5fb523] md:bg-cyan-800 hover:bg-cyan-600 focus:shadow-outline focus:outline-none text-white font-bold py-2 px-4 rounded"%></p>
+          </li>
+  
+      <% end %>
+    </ul>
+  </div>
+</section>

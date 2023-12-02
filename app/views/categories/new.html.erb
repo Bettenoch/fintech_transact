@@ -1,0 +1,26 @@
+<section class="new-category grid mx-auto flex-1 py-4 mt-24 w-[80%]">
+    <%= link_to 'Back to Categories <', categories_path %>
+  <div class="page-content justify-self-center flex flex-col items-centre gap-2">
+    
+    <h2 class="title text-xl md:text-3xl font-extrabold leading-none tracking-tight text-gray-900 md:text-5xl lg:text-6xl dark:text-white">Add a new Category</h2>
+    <ul class =" flex gap-2 w-full max-w-xs">
+        <%= form_with(model: @category, url: categories_path, html: { class: 'post-form flex flex-1 flex-col gap-2 bg-[#f8fafc] shadow-md rounded px-8 pt-6 pb-8 mb-4' }) do |f| %>
+    
+          <li class="f-label">
+            <%= f.label :category_name, class: "form-label block text-gray-700 text-sm font-bold mb-2"%><br>
+            <%= f.text_field :name, class: "form-control outline-none shadow appearance-none border rounded w-full py-2 px-4 text-gray-700 leading-tight focus:outline-none focus:bg-white focus:border-emerald-900",  required: true %>
+          </li>
+
+          <li class="f-label">
+            <%= f.label :icon, class: "form-label block text-gray-700 text-sm font-bold mb-2" %><br>
+            <%= f.text_field :icon, class: "form-control outline-none shadow appearance-none border rounded w-full py-2 px-4 text-gray-700 leading-tight focus:outline-none focus:bg-white focus:border-emerald-900", required: true %>
+          </li>
+
+          <li class="btn-container">
+            <p><%= f.submit "Add Category", class: " border-2 border-white md:border-none submit-btn w-full justify-self-center shadow bg-[#5fb523] md:bg-cyan-800 hover:bg-cyan-600 focus:shadow-outline focus:outline-none text-white font-bold py-2 px-4 rounded"%></p>
+          </li>
+  
+      <% end %>
+    </ul>
+  </div>
+</section>

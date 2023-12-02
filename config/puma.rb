@@ -21,7 +21,7 @@ end
 # Specifies the `worker_timeout` threshold that Puma will use to wait before
 # terminating a worker in development environments.
 worker_timeout 3600 if ENV.fetch("RAILS_ENV", "development") == "development"
-
+# workers ENV.fetch("WEB_CONCURRENCY") { 4 }
 # Specifies the `port` that Puma will listen on to receive requests; default is 3000.
 port ENV.fetch("PORT") { 3000 }
 
@@ -30,6 +30,6 @@ environment ENV.fetch("RAILS_ENV") { "development" }
 
 # Specifies the `pidfile` that Puma will use.
 pidfile ENV.fetch("PIDFILE") { "tmp/pids/server.pid" }
-
+preload_app!
 # Allow puma to be restarted by `bin/rails restart` command.
 plugin :tmp_restart

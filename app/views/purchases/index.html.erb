@@ -1,20 +1,20 @@
 <section class="purchase_list_container flex items-center justify-center mt-24">
-  <div class="purchase-box flex flex-col gap-4">
+  <div class="purchase-box flex flex-col gap-4 p-4">
     <%if @top_purchases.empty?%>
         <%= link_to 'Back to Categories <', categories_path %>
-        <h2 class="text-3xl font-extrabold leading-none tracking-tight text-gray-900 md:text-5xl lg:text-6xl dark:text-white">Oops!! Purchases List is Empty</h2>
+        <h2 class="text-xl md:text-3xl font-extrabold leading-none tracking-tight text-gray-900 lg:text-6xl dark:text-white">Oops!! Purchases List is Empty</h2>
         <%= link_to 'Add a New Transaction', new_category_purchases_path, class: "text-gray-900 bg-gradient-to-r from-lime-200 via-lime-400 to-lime-500 hover:bg-gradient-to-br focus:ring-4 focus:outline-none focus:ring-lime-300 dark:focus:ring-lime-800 font-medium rounded-lg text-sm px-5 py-2.5 text-center me-2 mb-2" %>
     <%else%> 
-      <div>
-        <article class="top flex flex-col gap-4">
+      <div class="flex flex-col gap-2">
+        <div class="top flex flex-col gap-4">
           <div class="grid">
             <button class="justify-self-start">
               <%= link_to 'Back to Categories <', categories_path %>
             </button>
           </div>
-          <h2 class="text-3xl font-extrabold leading-none tracking-tight text-gray-900 md:text-5xl lg:text-6xl dark:text-white">Find your Transactions here </h2>
-        </article>
-        <article class="mb-6 mt-6 border border-slate-400 shadow-[rgba(50,50,93,0.25)_0px_6px_12px_-2px,_rgba(0,0,0,0.3)_0px_3px_7px_-3px">
+          <h2 class="text-xl md:text-3xl font-extrabold leading-none tracking-tight text-gray-900 lg:text-6xl dark:text-white">Find your Transactions here </h2>
+        </div>
+        <div class="mb-6 mt-6 border border-slate-400 shadow-[rgba(50,50,93,0.25)_0px_6px_12px_-2px,_rgba(0,0,0,0.3)_0px_3px_7px_-3px">
               <article class="p-4 grid grid-cols-3 gap-4">
                 <div class="img-top col-span-2 flex gap-2">
                   <figure class="relative max-w-sm transition-all duration-300 cursor-pointer filter grayscale hover:grayscale-0">
@@ -31,33 +31,33 @@
                   <p><strong>Budget: </strong><%= @category.purchases.sum(:amount) %>$</p>
                 </div>
               </article>
-        </article>
-        <div class="relative overflow-x-auto">
+        </div>
+        <div class="flex flex-col">
           <table class="shadow-[0_8px_30px_rgb(0,0,0,0.12)] food-display w-full text-sm text-left rtl:text-right text-gray-500 dark:text-gray-400">
 
             <thead class="text-xs text-gray-700 uppercase bg-gray-50 dark:bg-gray-700 dark:text-gray-400">
               <tr>
-                <th scope="col" class="px-6 py-3">Transaction</th>
-                <th scope="col" class="px-6 py-3">Date</th>
-                <th scope="col" class="px-6 py-3">Amount</th>
-                <th scope="col" class="px-6 py-3">Action</th>
+                <th scope="col" class="px-1 md:px-6 py-1.5 py-3">Transaction</th>
+                <th scope="col" class="px-1 md:px-6 py-1.5 py-3">Date</th>
+                <th scope="col" class="px-1 md:px-6 py-1.5 py-3">Amount</th>
+                <th scope="col" class="px-1 md:px-6 py-1.5 py-3">Action</th>
               </tr>
             </thead>
             <tbody>
               <% @top_purchases.each do |purchase| %>
                 <tr class="bg-white border-b dark:bg-gray-800 dark:border-gray-700">
-                    <th scope="row" class="px-6 py-4 font-medium text-gray-900 whitespace-nowrap dark:text-white"><%= purchase.name%></th>
-                    <td class="px-6 py-4"><%= purchase.updated_at.strftime("%e %b %Y") %></td>
-                    <td class="px-6 py-4"><%= purchase.amount%></td>
-                    <td class="px-6 py-4">btn</td>
+                    <th scope="row" class="px-2 md:px-6 py-1 md:py-4 font-medium text-gray-900 md:whitespace-nowrap dark:text-white"><%= purchase.name%></th>
+                    <td class="px-1 md:px-6 py-2 md:py-4"><%= purchase.updated_at.strftime("%e %b %Y") %></td>
+                    <td class="px-1 md:px-6 py-2 md:py-4"><%= purchase.amount%></td>
+                    <td class="px-1 md:px-6 py-2 md:py-4">del</td>
                 </tr>
               <%end%>
             </tbody>
             
           </table>
         </div>
-        <div class="grid mt-6 mb-6 pt-6">
-            <%= link_to 'Add a New Transaction', new_category_purchases_path, class: " text-gray-900 bg-gradient-to-r from-lime-200 via-lime-400 to-lime-500 hover:bg-gradient-to-br focus:ring-4 focus:outline-none focus:ring-lime-300 dark:focus:ring-lime-800 font-medium rounded-lg text-sm px-5 py-2.5 text-center me-2 mb-2" %>
+        <div class="bg-[#5fb523] md:bg-none grid mt-6 mb-6 pt-6">
+            <%= link_to 'Add a New Transaction', new_category_purchases_path, class: " justify-self-center text-white border-2 border-white md:border-none md:text-gray-900 md:bg-gradient-to-r from-lime-200 via-lime-400 to-lime-500 hover:bg-gradient-to-br focus:ring-4 focus:outline-none focus:ring-lime-300 dark:focus:ring-lime-800 font-medium rounded-lg text-sm px-20 py-2.5 text-center me-1 ms-2 mb-2" %>
         </div>
       </div>
     <%end%>

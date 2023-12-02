@@ -18,8 +18,8 @@ default: &default
   # For details on connection pooling, see Rails configuration guide
   # https://guides.rubyonrails.org/configuring.html#database-pooling
   pool: <%= ENV.fetch("RAILS_MAX_THREADS") { 5 } %>
-  username: steel
-  password: <%= ENV['FINTECH_TRANSACT_DATABASE_PASSWORD'] %>
+  # username: steel
+  # password: <%= ENV['FINTECH_TRANSACT_DATABASE_PASSWORD'] %>
   
 development:
   <<: *default
@@ -83,6 +83,4 @@ test:
 #
 production:
   <<: *default
-  database: fintech_transact_production
-  username: steel
-  password: <%= ENV['FINTECH_TRANSACT_DATABASE_PASSWORD'] %>
+  url: <%= ENV['DATABASE_URL'] %>

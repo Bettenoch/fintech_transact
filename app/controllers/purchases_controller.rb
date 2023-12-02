@@ -13,10 +13,17 @@ class PurchasesController < ApplicationController
 
   def create
     @purchase = current_user.purchases.build(purchase_params)
-    if @purchase.save
-      redirect_to category_purchases_path, notice: 'Purchase created successfully.'
-    else
+    
+    if @purchase.category_ids.empty?
+      flash.now[:alert] = 'Please select at least one category.'
+      @category = Category.where(user: current_user)
       render :new
+    else
+      if @purchase.save
+        redirect_to category_purchases_path, notice: 'Purchase created successfully.'
+      else
+        render :new
+      end
     end
   end
 
